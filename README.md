@@ -13,9 +13,13 @@ Your Final Project has the following steps:
 
 Choose your group members and record that information in the repository.
 
+> Group members are Joe Deglman and Francisco Montanez.
+
 ## Schedule your time (2 points)
 
 Have a presentation date/time picked out. We'll use most of the last two weeks for presentations, along with course evals, final exam wrap-up, and the like.
+
+> We have chosen for our presentation time to be Monday, May 6.
 
 ## Design the project (10 points)
 

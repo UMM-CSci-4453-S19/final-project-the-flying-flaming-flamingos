@@ -1,0 +1,1 @@
+We are going to create a genealogy interface that would allow a user look up their family history, add family members to the tree, remove family members from the tree, move a person from one spot to another, update person information, and displays them.
