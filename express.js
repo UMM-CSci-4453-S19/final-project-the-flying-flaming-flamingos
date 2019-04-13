@@ -33,4 +33,13 @@ app.get("/click", function(req, res) {
   })(res));
 });
 
+app.get("/login", function(req, res) {
+  // getting the email entered in the form
+  var emailAddress = document.getElementById("authentication-form");
+  var sql = "SELECT EXISTS(SELECT 1 FROM users WHERE email=" + emailAddress + ");";
+  console.log("searching if email address exists in database...");
+});
+
+
+
 app.listen(port);

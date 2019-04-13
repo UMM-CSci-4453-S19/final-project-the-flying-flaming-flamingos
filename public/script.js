@@ -9,6 +9,7 @@ function ButtonCtrl($scope, buttonApi) {
   $scope.isLoading = isLoading;
   $scope.refreshButtons = refreshButtons;
   $scope.buttonClick = buttonClick;
+  $scope.user = user;
 
   var loading = false;
 
@@ -40,6 +41,20 @@ function ButtonCtrl($scope, buttonApi) {
   }
   refreshButtons(); //make sure the buttons are loaded
 
+  // login function
+  function login() {
+    buttonApi.login()
+      .sucess(function() {})
+      .error(function() {
+        $scope.errorMessage = "Unable to login";
+      });
+  }
+
+  // signUp function
+  function signUp() {
+
+  }
+
 }
 
 function buttonApi($http, apiUrl) {
@@ -53,5 +68,13 @@ function buttonApi($http, apiUrl) {
       //      console.log("Attempting with "+url);
       return $http.get(url); // Easy enough to do this way
     }
+
+    // login function
+    login: function() {
+      var url = apiUrl + '/login' + '?user=' + $scope.user;
+      //      console.log("Attempting with "+url);
+      return $http.get(url); // Easy enough to do this way
+    }
+
   };
 }
