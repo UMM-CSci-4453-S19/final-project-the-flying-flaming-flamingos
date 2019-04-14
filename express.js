@@ -37,23 +37,27 @@ app.get("/login", function(req, res) {
   // getting the email entered in the form
   var username = req.param("user");
   console.log("username:"+username);
-  var sql = "SELECT count(*) FROM FFF.users WHERE username='" + username + "';";
+  var sql = "SELECT count(*) as c FROM FFF.users WHERE username='" + username + "';";
   console.log("searching if email address exists in database...");
 
     connection.query(sql, (function(res) {
         return function(err, rows, fields) {
-            if(rows){
-                console.log(rows);
-            }
             if (err) {
-                console.log("We have an insertion error:");
+                console.log("We have an error:");
                 console.log(err);
+            }
+            if(rows[0].c==0){
+                res.send("could not login");
+            }else {
+                app.use(express.static("public" + '/profile'));
             }
             res.send(err); // Let the upstream guy know how it went
         }
     })(res));
 });
 
-
+app.get("/profile",function (req,res) {
+    res.send("../profile.html", {root: __dirname + '/public/'});
+});
 
 app.listen(port);

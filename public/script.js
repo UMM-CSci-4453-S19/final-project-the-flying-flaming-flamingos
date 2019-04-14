@@ -45,7 +45,7 @@ function ButtonCtrl($scope, buttonApi) {
   // login function
   function login() {
     $scope.user = window.document.getElementById("authentication-form").value;
-    buttonApi.logIn()
+    buttonApi.logIn($scope.user)
       .sucess(function() {})
       .error(function() {
         $scope.errorMessage = "Unable to login";
@@ -72,11 +72,20 @@ function buttonApi($http, apiUrl) {
     },
 
     // login function
-    logIn: function() {
-      var url = apiUrl + '/login' + '?user=' + $scope.user;
+    logIn: function(user) {
+      var url = apiUrl + '/login' + '?user=' + user;
       //      console.log("Attempting with "+url);
       return $http.get(url); // Easy enough to do this way
     }
 
   };
 }
+
+// function login() {
+//     var user = window.document.getElementById("authentication-form").value;
+//     buttonApi.logIn(user)
+//         .sucess(function() {})
+//         .error(function() {
+//             $scope.errorMessage = "Unable to login";
+//         });
+// }
