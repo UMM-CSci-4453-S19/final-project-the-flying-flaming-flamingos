@@ -9,6 +9,7 @@ function ButtonCtrl($scope, buttonApi) {
   $scope.isLoading = isLoading;
   $scope.refreshButtons = refreshButtons;
   $scope.buttonClick = buttonClick;
+  $scope.login = login;
   $scope.user = user;
 
   var loading = false;
@@ -43,7 +44,8 @@ function ButtonCtrl($scope, buttonApi) {
 
   // login function
   function login() {
-    buttonApi.login()
+    $scope.user = window.document.getElementById("authentication-form").value;
+    buttonApi.logIn($scope.user)
       .sucess(function() {})
       .error(function() {
         $scope.errorMessage = "Unable to login";
@@ -67,14 +69,23 @@ function buttonApi($http, apiUrl) {
       var url = apiUrl + '/click?id=' + id;
       //      console.log("Attempting with "+url);
       return $http.get(url); // Easy enough to do this way
-    }
+    },
 
     // login function
-    login: function() {
-      var url = apiUrl + '/login' + '?user=' + $scope.user;
+    logIn: function(user) {
+      var url = apiUrl + '/login' + '?user=' + user;
       //      console.log("Attempting with "+url);
       return $http.get(url); // Easy enough to do this way
     }
 
   };
 }
+
+// function login() {
+//     var user = window.document.getElementById("authentication-form").value;
+//     buttonApi.logIn(user)
+//         .sucess(function() {})
+//         .error(function() {
+//             $scope.errorMessage = "Unable to login";
+//         });
+// }
