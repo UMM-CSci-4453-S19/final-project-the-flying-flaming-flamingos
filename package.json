@@ -1,0 +1,23 @@
+{
+  "name": "final-project-the-flying-flaming-flamingos",
+  "version": "1.0.0",
+  "description": "Your Final Project has the following steps:",
+  "main": "express.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UMM-CSci-4453-S19/final-project-the-flying-flaming-flamingos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UMM-CSci-4453-S19/final-project-the-flying-flaming-flamingos/issues"
+  },
+  "homepage": "https://github.com/UMM-CSci-4453-S19/final-project-the-flying-flaming-flamingos#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "neo4j-driver": "^1.7.3"
+  }
+}
