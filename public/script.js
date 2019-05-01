@@ -1,36 +1,31 @@
 angular.module('buttons', [])
   .controller('buttonCtrl', ButtonCtrl)
   .factory('buttonApi', buttonApi)
-  .constant('apiUrl', 'http://146.57.34.125:1337'); //CHANGE for the lab!
+  .constant('apiUrl', 'http://localhost:1337'); //CHANGE for the lab!
 
 function ButtonCtrl($scope, buttonApi) {
   $scope.buttons = []; //Initially all was still
   $scope.errorMessage = '';
   $scope.isLoading = isLoading;
-  $scope.refreshButtons = refreshButtons;
   $scope.buttonClick = buttonClick;
   $scope.login = login;
   $scope.user = user;
+  $scope.signup = signup;
+  $scope.email = email;
+  $scope.password = password;
+  $scope.passwordRepeat = passwordRepeat;
 
   var loading = false;
+
+  var email;
+  var password;
+  var passwordRepeat;
+  var user;
 
   function isLoading() {
     return loading;
   }
 
-  function refreshButtons() {
-    loading = true;
-    $scope.errorMessage = '';
-    buttonApi.getButtons()
-      .success(function (data) {
-        $scope.buttons = data;
-        loading = false;
-      })
-      .error(function () {
-        $scope.errorMessage = "Unable to load Buttons:  Database request failed";
-        loading = false;
-      });
-  }
 
   function buttonClick($event) {
     $scope.errorMessage = '';
@@ -40,13 +35,12 @@ function ButtonCtrl($scope, buttonApi) {
         $scope.errorMessage = "Unable click";
       });
   }
-  refreshButtons(); //make sure the buttons are loaded
 
   // login function
   function login() {
     $scope.user = window.document.getElementById("authentication-form").value;
     buttonApi.logIn($scope.user)
-      .sucess(function () { })
+      .success(function () { })
       .error(function () {
         $scope.errorMessage = "Unable to login";
       });
@@ -54,9 +48,19 @@ function ButtonCtrl($scope, buttonApi) {
 
   // signup function
   function signup() {
-    // code here
+    console.log("i made it to lowercase signup")
+    buttonApi.signUp()
+      .success(function () {
+        console.log("made it to success in signup!")
+      })
+      .error(function () {
+        $scope.errorMessage = "Unable to sign up!";
+      });
   }
+
+
 }
+
 
 function buttonApi($http, apiUrl) {
   return {
@@ -71,15 +75,23 @@ function buttonApi($http, apiUrl) {
       return $http.get(url); // Easy enough to do this way
     },
 
-    // login function
+    // logIn function
     logIn: function (user) {
       var url = apiUrl + '/login' + '?user=' + user;
       //      console.log("Attempting with "+url);
       return $http.get(url); // Easy enough to do this way
     },
+
     // signUp function
     signUp: function () {
-      var url = apiUrl + '/signup';
+      console.log("i made it to uppercase signUp")
+      email = window.document.getElementById("signup-email").value;
+      password = window.document.getElementById("signup-psw").value;
+      passwordRepeat = window.document.getElementById("signup-repeat-psw").value;
+      var url = apiUrl + '/signup?email=' + email + '&password=' + password + '&passwordRepeat=' + passwordRepeat;
+      console.log(url)
+      console.log($http)
+      console.log("HEY! Youre at the bottom of button api signUp")
       return $http.get(url);
     }
   };
