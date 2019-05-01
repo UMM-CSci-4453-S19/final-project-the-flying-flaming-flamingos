@@ -1,0 +1,37 @@
+BEGIN
+create (n1:user {id:1, gender: 'Male', firstName: 'Peter', lastName:'Howes', born: 1934-05-16, died: '1982-12-10' })
+create (n2:user {id:2, gender: 'Female', firstName: 'Barbara', lastName:'Norman', born: 1938-06-26, died: '1989-04-09' })
+create (n3:user {id:3, gender: 'Female', firstName: 'Karen', lastName:'Howes', born: 1960-04-21, died: '' })
+create (n4:user {id:4, gender: 'Male', firstName: 'Stephen', lastName:'Howes', born: 1962-06-16, died: '' })
+create (n5:user {id:5, gender: 'Male', firstName: 'Jeremy', lastName:'Howes', born: 1971-08-17, died: '' })
+create (n6:user {id:6, gender: 'Male', firstName: 'Michael', lastName:'Howes', born: 1973-07-06, died: '' })
+create (n7:user {id:7, gender: 'Male', firstName: 'James', lastName:'Bradshaw', born: 1960-04-16, died: '' })
+create (n8:user {id:8, gender: 'Male', firstName: 'Konrad', lastName:'Bradshaw', born: 1990-02-26, died: '' })
+create (n9:user {id:9, gender: 'Female', firstName: 'Katia', lastName:'Bradshaw', born: 1992-05-16, died: '' })
+create (n10:user {id:10, gender: 'Female', firstName: 'Jodeen', lastName:'Madren', born: 1974-04-13, died: '' })
+create (n11:user {id:11, gender: 'Female', firstName: 'Sydnee', lastName:'Howes', born: 2000-01-29, died: '' })
+create (n12:user {id:12, gender: 'Male', firstName: 'Riley', lastName:'Howes', born: 2003-07-21, died: '' })
+create (n13:user {id:13, gender: 'Female', firstName: 'Amy', lastName:'Tschirgi', born: 1974-05-24, died: '' })
+create (n14:user {id:14, gender: 'Male', firstName: 'Jacob', lastName:'Howes', born: 1999-04-04, died: '' })
+create (n15:user {id:15, gender: 'Male', firstName: 'Riley', lastName:'Howes', born: 2001-09-15, died: '' })
+create n1-[:parentOf]->n3
+create n1-[:parentOf]->n4
+create n1-[:parentOf]->n5
+create n1-[:parentOf]->n6
+create n2-[:parentOf]->n3
+create n2-[:parentOf]->n4
+create n2-[:parentOf]->n5
+create n2-[:parentOf]->n6
+create n3-[:parentOf]->n8
+create n3-[:parentOf]->n9
+create n7-[:parentOf]->n8
+create n7-[:parentOf]->n9
+create n5-[:parentOf]->n11
+create n5-[:parentOf]->n12
+create n10-[:parentOf]->n11
+create n10-[:parentOf]->n12
+create n6-[:parentOf]->n14
+create n6-[:parentOf]->n15
+create n13-[:parentOf]->n14
+create n13-[:parentOf]->n15
+COMMIT
