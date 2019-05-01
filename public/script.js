@@ -22,11 +22,11 @@ function ButtonCtrl($scope, buttonApi) {
     loading = true;
     $scope.errorMessage = '';
     buttonApi.getButtons()
-      .success(function(data) {
+      .success(function (data) {
         $scope.buttons = data;
         loading = false;
       })
-      .error(function() {
+      .error(function () {
         $scope.errorMessage = "Unable to load Buttons:  Database request failed";
         loading = false;
       });
@@ -35,8 +35,8 @@ function ButtonCtrl($scope, buttonApi) {
   function buttonClick($event) {
     $scope.errorMessage = '';
     buttonApi.clickButton($event.target.id)
-      .success(function() {})
-      .error(function() {
+      .success(function () { })
+      .error(function () {
         $scope.errorMessage = "Unable click";
       });
   }
@@ -46,46 +46,41 @@ function ButtonCtrl($scope, buttonApi) {
   function login() {
     $scope.user = window.document.getElementById("authentication-form").value;
     buttonApi.logIn($scope.user)
-      .sucess(function() {})
-      .error(function() {
+      .sucess(function () { })
+      .error(function () {
         $scope.errorMessage = "Unable to login";
       });
   }
 
-  // signUp function
-  function signUp() {
-
+  // signup function
+  function signup() {
+    // code here
   }
-
 }
 
 function buttonApi($http, apiUrl) {
   return {
-    getButtons: function() {
+    getButtons: function () {
       var url = apiUrl + '/buttons';
       return $http.get(url);
     },
-    clickButton: function(id) {
+    // clickButton
+    clickButton: function (id) {
       var url = apiUrl + '/click?id=' + id;
       //      console.log("Attempting with "+url);
       return $http.get(url); // Easy enough to do this way
     },
 
     // login function
-    logIn: function(user) {
+    logIn: function (user) {
       var url = apiUrl + '/login' + '?user=' + user;
       //      console.log("Attempting with "+url);
       return $http.get(url); // Easy enough to do this way
+    },
+    // signUp function
+    signUp: function () {
+      var url = apiUrl + '/signup';
+      return $http.get(url);
     }
-
   };
 }
-
-// function login() {
-//     var user = window.document.getElementById("authentication-form").value;
-//     buttonApi.logIn(user)
-//         .sucess(function() {})
-//         .error(function() {
-//             $scope.errorMessage = "Unable to login";
-//         });
-// }

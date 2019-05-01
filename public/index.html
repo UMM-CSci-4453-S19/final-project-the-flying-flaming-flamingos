@@ -10,16 +10,45 @@
   <script src="script.js"></script>
 </head>
 
-<body ng-app="buttons">
-  <div class="container-fluid">
-    <h1>Sign Up or Log In</h1>
-    <div class="form-group">
-      <label for="authentication-form">Username:</label>
-      <input type="text" class="form-control" id="authentication-form">
+<body ng-app="buttons" style="text-align: center">
+
+  <h1>MY Genealogy</h1>
+
+  <form action="action_page">
+    <div class="container">
+      <h2>Sign Up</h2>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+      <hr>
+
+      <p>By creating an account you agree to our Terms & Privacy.</p>
+      <button type="submit" class="registerbtn">Sign Up</button>
+      <hr>
     </div>
-    <button id="signup-btn" onclick="signup();">Sign up</button>
-    <button id="login-btn" onclick="login();">Login</button>
+  </form>
+
+  <div class="container signin">
+    <p>Already have an account?</p>
+    <h2>Log In</h2>
+    <hr>
+    <div class="form-group">
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+    </div>
+    <button type="submit" class="loginbtn">Log In</button>
   </div>
+
 </body>
 
 </html>

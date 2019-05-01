@@ -12,28 +12,28 @@ var session = driver.session();
 session
   .run("MATCH (n) RETURN COUNT(n)")
   .subscribe({
-    onNext: function(record) {
+    onNext: function (record) {
       console.log(record);
     },
-    onCompleted: function() {
+    onCompleted: function () {
       session.close();
     },
-    onError: function(error) {
+    onError: function (error) {
       console.log(error);
     }
   });
 
 app.use(express.static(__dirname + '/public'));
 
-app.get("/click", function(req, res) {
+app.get("/click", function (req, res) {
   //
 });
 
-app.get("/login", function(req, res) {
+app.get("/login", function (req, res) {
   //
 });
 
-app.get("/profile", function(req, res) {
+app.get("/profile", function (req, res) {
   res.send("../profile.html", {
     root: __dirname + '/public/'
   });
