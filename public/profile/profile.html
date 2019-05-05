@@ -2,13 +2,35 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Profile</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Profile</title>
 </head>
 
-<body>
+<body style="text-align: center">
+
+  <h1>Account Information</h1>
+  <p>Please fill out the following information:</p>
+  <div id="profile-info">
+
+    <fieldset>
+      <legend>Personal information:</legend>
+      First Name:
+      <input type="text" name="firstname" placeholder="Enter first name" required><br><br>
+      Last Name:
+      <input type="text" name="lastname" placeholder="Enter last name" required><br><br>
+
+      Gender:<br>
+      <input type="radio" name="gender" value="male" checked> Male<br>
+      <input type="radio" name="gender" value="female"> Female<br><br>
+
+      Date of Birth:<br>
+      <input type="date" name="dob" max="2019-5-10" required><br>
+    </fieldset>
+
+
+  </div>
 
 </body>
 
