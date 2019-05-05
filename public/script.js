@@ -50,7 +50,12 @@ function ButtonCtrl($scope, buttonApi) {
   function signup() {
     console.log("i made it to lowercase signup")
     buttonApi.signUp()
-      .success(function () {
+      .success(function (res) {
+        console.log(res);
+        if(res=="success"){
+          //buttonApi.profile()
+            window.location.assign("http://localhost:1337/profile")
+        }
         console.log("made it to success in signup!")
       })
       .error(function () {
@@ -93,6 +98,11 @@ function buttonApi($http, apiUrl) {
       console.log($http)
       console.log("HEY! Youre at the bottom of button api signUp")
       return $http.get(url);
+    },
+
+    profile: function () {
+      var url = apiUrl +'/profile';
+        return $http.get(url);
     }
   };
 }
