@@ -30,8 +30,8 @@ function ButtonCtrl($scope, buttonApi) {
   function buttonClick($event) {
     $scope.errorMessage = '';
     buttonApi.clickButton($event.target.id)
-      .success(function () { })
-      .error(function () {
+      .success(function() {})
+      .error(function() {
         $scope.errorMessage = "Unable click";
       });
   }
@@ -40,9 +40,9 @@ function ButtonCtrl($scope, buttonApi) {
   function login() {
     $scope.user = window.document.getElementById("authentication-form").value;
     buttonApi.logIn($scope.user)
-      .success(function (res) {
-        if(res == "success"){
-            window.location.assign("http://localhost:1337/profile")
+      .success(function(res) {
+        if (res == "success") {
+          window.location.assign("http://localhost:1337/profile")
         }
       })
       .error(function (res) {
@@ -55,11 +55,11 @@ function ButtonCtrl($scope, buttonApi) {
   function signup() {
     console.log("i made it to lowercase signup")
     buttonApi.signUp()
-      .success(function (res) {
+      .success(function(res) {
         console.log(res);
-        if(res=="success"){
+        if (res == "success") {
           //buttonApi.profile()
-            window.location.assign("http://localhost:1337/profile")
+          window.location.assign("http://localhost:1337/profile")
         }
         console.log("made it to success in signup!")
       })
@@ -69,32 +69,31 @@ function ButtonCtrl($scope, buttonApi) {
       });
   }
 
-
 }
 
 
 function buttonApi($http, apiUrl) {
   return {
-    getButtons: function () {
+    getButtons: function() {
       var url = apiUrl + '/buttons';
       return $http.get(url);
     },
     // clickButton
-    clickButton: function (id) {
+    clickButton: function(id) {
       var url = apiUrl + '/click?id=' + id;
       //      console.log("Attempting with "+url);
       return $http.get(url); // Easy enough to do this way
     },
 
     // logIn function
-    logIn: function (user) {
+    logIn: function(user) {
       var url = apiUrl + '/login' + '?user=' + user;
       //      console.log("Attempting with "+url);
       return $http.get(url); // Easy enough to do this way
     },
 
     // signUp function
-    signUp: function () {
+    signUp: function() {
       console.log("i made it to uppercase signUp")
       email = window.document.getElementById("signup-email").value;
       password = window.document.getElementById("signup-psw").value;
@@ -106,9 +105,10 @@ function buttonApi($http, apiUrl) {
       return $http.get(url);
     },
 
-    profile: function () {
-      var url = apiUrl +'/profile';
-        return $http.get(url);
+    profile: function() {
+      var url = apiUrl + '/profile';
+      return $http.get(url);
     }
+
   };
 }
