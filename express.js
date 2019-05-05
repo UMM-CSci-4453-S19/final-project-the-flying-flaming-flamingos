@@ -35,7 +35,7 @@ app.get("/login", function(req, res) {
                         res.status(200).send("success")
                         console.log("logging in")
                     } else {
-                        res.status(400).send();
+                        res.status(400).send("You entered your password INCORRECTLY!");
                         errorMessage = "You entered your password INCORRECTLY!";
                     }
 
@@ -57,7 +57,7 @@ app.get("/signup", function(req, res) {
 
   if (password != passwordRepeat) {
 
-      res.status(400).send();
+      res.status(400).send("the passwords do not match");
 
     console.log("the passwords do not match")
 
@@ -88,7 +88,7 @@ app.get("/signup", function(req, res) {
                 });
 
           }else {
-              res.status(400).send();
+              res.status(400).send("profile already exists with given email");
           }
           console.log("onCompleted");
           console.log(record);

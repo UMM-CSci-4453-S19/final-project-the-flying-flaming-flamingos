@@ -45,7 +45,8 @@ function ButtonCtrl($scope, buttonApi) {
             window.location.assign("http://localhost:1337/profile")
         }
       })
-      .error(function () {
+      .error(function (res) {
+        alert(res);
         $scope.errorMessage = "Unable to login";
       });
   }
@@ -62,7 +63,8 @@ function ButtonCtrl($scope, buttonApi) {
         }
         console.log("made it to success in signup!")
       })
-      .error(function () {
+      .error(function (res) {
+        alert(res);
         $scope.errorMessage = "Unable to sign up!";
       });
   }
