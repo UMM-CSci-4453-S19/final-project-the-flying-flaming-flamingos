@@ -32,13 +32,13 @@ app.get("/login", function(req, res) {
                     flag = false;
                     console.log(record)
                     if (record._fields[0].properties.password == password) {
-
+                        res.status(200).send("success")
                         console.log("logging in")
                     } else {
+                        res.status(400).send();
                         errorMessage = "You entered your password INCORRECTLY!";
                     }
-                    console.log(record._fields[0].properties.email)
-                    console.log(record);
+
                 }
             })
 
@@ -56,6 +56,8 @@ app.get("/signup", function(req, res) {
   console.log(email, password, passwordRepeat)
 
   if (password != passwordRepeat) {
+
+      res.status(400).send();
 
     console.log("the passwords do not match")
 
@@ -85,6 +87,8 @@ app.get("/signup", function(req, res) {
                     }
                 });
 
+          }else {
+              res.status(400).send();
           }
           console.log("onCompleted");
           console.log(record);
