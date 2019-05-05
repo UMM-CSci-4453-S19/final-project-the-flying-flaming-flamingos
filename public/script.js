@@ -40,7 +40,11 @@ function ButtonCtrl($scope, buttonApi) {
   function login() {
     $scope.user = window.document.getElementById("authentication-form").value;
     buttonApi.logIn($scope.user)
-      .success(function () { })
+      .success(function (res) {
+        if(res == "success"){
+            window.location.assign("http://localhost:1337/profile")
+        }
+      })
       .error(function () {
         $scope.errorMessage = "Unable to login";
       });
