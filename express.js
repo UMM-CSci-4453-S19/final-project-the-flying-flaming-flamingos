@@ -75,4 +75,12 @@ app.get("/profile", function (req, res) {
     res.status(200).sendFile("/profile/profile.html", {root: __dirname + '/public/'});
 });
 
+app.get("/match", function (req, res) {
+    var firstname = req.query['firstname'];
+    var lastname = req.query['lastname'];
+    var gender = req.query['gender'];
+
+
+});
+
 app.listen(port);
