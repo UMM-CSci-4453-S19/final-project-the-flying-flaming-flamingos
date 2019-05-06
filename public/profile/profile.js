@@ -15,6 +15,12 @@ function ProfileCtrl($scope, profileApi) {
     function matchPerson() {
         console.log("i made it matchPerson");
         profileApi.MatchPerson()
+            .success(function (res) {
+                console.log(res);
+            })
+            .error(function (res) {
+                console.log(res);
+            })
     }
 
 }
@@ -28,6 +34,12 @@ function profileApi($http, apiUrl) {
             lastName = window.document.getElementById("lastname").value;
             gender = window.document.getElementsByName("gender")[0].checked;
             console.log(gender)
+
+            if(gender){
+                gender = "Male";
+            }else {
+                gender = "Female";
+            }
 
             var url = apiUrl + '/match?firstname=' + firstname + "&lastname=" + lastName + '&gender=' + gender;
             return $http.get(url);
