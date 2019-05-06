@@ -23,7 +23,7 @@ function ButtonCtrl($scope, buttonApi) {
 
   // signup function
   function signup() {
-    console.log("i made it to lowercase signup")
+    console.log("i made it to lowercase signup");
     buttonApi.signUp()
       .success(function(res) {
         console.log(res);
@@ -66,14 +66,14 @@ function buttonApi($http, apiUrl) {
 
     // signUp function
     signUp: function() {
-      console.log("i made it to uppercase signUp")
+      console.log("i made it to uppercase signUp");
       var email = window.document.getElementById("signup-email").value;
       var password = window.document.getElementById("signup-psw").value;
       var passwordRepeat = window.document.getElementById("signup-repeat-psw").value;
       var url = apiUrl + '/signup?email=' + email + '&password=' + password + '&passwordRepeat=' + passwordRepeat;
-      console.log(url)
-      console.log($http)
-      console.log("HEY! Youre at the bottom of button api signUp")
+      console.log(url);
+      console.log($http);
+      console.log("HEY! Youre at the bottom of button api signUp");
       return $http.get(url);
     }
 

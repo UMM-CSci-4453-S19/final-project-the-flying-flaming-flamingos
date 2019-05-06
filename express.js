@@ -24,15 +24,15 @@ app.get("/login", function(req, res) {
     console.log(email, password);
 
 
-        console.log("passwords match")
+        console.log("passwords match");
         session
             .run("MATCH (n:user {email:'" + email + "'}) RETURN n")
             .subscribe({
                 onNext: function(record) {
                     flag = false;
-                    console.log(record)
+                    console.log(record);
                     if (record._fields[0].properties.password == password) {
-                        res.status(200).send("success")
+                        res.status(200).send("success");
                         console.log("logging in")
                     } else {
                         res.status(400).send("You entered your password INCORRECTLY!");
@@ -51,26 +51,26 @@ app.get("/login", function(req, res) {
 });
 
 app.get("/signup", function(req, res) {
-  console.log("i made it to signup on express.js")
+  console.log("i made it to signup on express.js");
   //
   var email = req.query['email'];
   var password = req.query['password'];
   var passwordRepeat = req.query['passwordRepeat'];
   var flag = true;
   var errorMessage;
-  console.log(email, password, passwordRepeat)
+  console.log(email, password, passwordRepeat);
 
   if (password != passwordRepeat) {
 
       res.status(400).send("the passwords do not match");
 
-    console.log("the passwords do not match")
+    console.log("the passwords do not match");
 
     // $scope.errorMessage = "Passwords do NOT match!";
     console.log("Hey! you are in the if password statement")
 
   } else {
-    console.log("passwords match")
+    console.log("passwords match");
     session
       .run("MATCH (n:user {email:'" + email + "'}) RETURN n")
       .subscribe({
