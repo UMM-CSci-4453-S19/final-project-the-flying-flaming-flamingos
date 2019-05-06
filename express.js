@@ -10,21 +10,11 @@ var session = driver.session();
 
 app.use(express.static(__dirname + '/public'));
 
-app.get("/click", function (req, res) {
-    //
-});
-
 app.get("/login", function (req, res) {
-    //
-
     var email = req.query['email'];
     var password = req.query['password'];
     var flag = true;
-    var errorMessage;
-    console.log(email, password);
 
-
-    console.log("passwords match");
     session
         .run("MATCH (n:user {email:'" + email + "'}) RETURN n")
         .subscribe({
@@ -33,12 +23,10 @@ app.get("/login", function (req, res) {
                 console.log(record);
                 if (record._fields[0].properties.password == password) {
                     res.status(200).send("success");
-                    console.log("logging in")
                 } else {
                     res.status(400).send("You entered your password INCORRECTLY!");
                     errorMessage = "You entered your password INCORRECTLY!";
                 }
-
             },
             onCompleted: function (record) {
                 if (flag) {
@@ -51,32 +39,19 @@ app.get("/login", function (req, res) {
 });
 
 app.get("/signup", function (req, res) {
-    console.log("i made it to signup on express.js");
-    //
     var email = req.query['email'];
     var password = req.query['password'];
     var passwordRepeat = req.query['passwordRepeat'];
     var flag = true;
-    var errorMessage;
-    console.log(email, password, passwordRepeat);
 
     if (password != passwordRepeat) {
-
         res.status(400).send("the passwords do not match");
-
-        console.log("the passwords do not match");
-
-        // $scope.errorMessage = "Passwords do NOT match!";
-        console.log("Hey! you are in the if password statement")
-
     } else {
-        console.log("passwords match");
         session
             .run("MATCH (n:user {email:'" + email + "'}) RETURN n")
             .subscribe({
                 onNext: function (record) {
                     flag = false;
-
                 },
                 onCompleted: function (record) {
 
@@ -85,31 +60,19 @@ app.get("/signup", function (req, res) {
                             .run("CREATE (n:user{email:'" + email + "', password:'" + password + "'})")
                             .subscribe({
                                 onCompleted: function (n) {
-                                    console.log(n);
                                     res.status(200).send("success")
-                                    //.sendFile("/profile/profile.html",{root: __dirname + '/public/'});
-                                    //console.log(res);
                                 }
                             });
-
                     } else {
                         res.status(400).send("profile already exists with given email");
                     }
-                    console.log("onCompleted");
-                    console.log(record);
                 }
             })
-
     }
 });
 
 app.get("/profile", function (req, res) {
-    // res.send("../profile.html", {
-    //   root: __dirname + '/public/'
-    // });
-    console.log("in profile api");
     res.status(200).sendFile("/profile/profile.html", {root: __dirname + '/public/'});
-    console.log("finished profile api");
 });
 
 app.listen(port);
