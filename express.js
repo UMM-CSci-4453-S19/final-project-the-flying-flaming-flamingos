@@ -103,4 +103,13 @@ app.get("/signup", function(req, res) {
   }
 });
 
+app.get("/profile", function(req, res) {
+    // res.send("../profile.html", {
+    //   root: __dirname + '/public/'
+    // });
+    console.log("in profile api");
+    res.status(200).sendFile("/profile/profile.html",{root: __dirname + '/public/'});
+    console.log("finished profile api");
+});
+
 app.listen(port);
