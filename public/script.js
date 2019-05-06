@@ -11,9 +11,7 @@ function ButtonCtrl($scope, buttonApi) {
     function login() {
         buttonApi.logIn($scope.user)
             .success(function (res) {
-                if (res == "success") {
-                    window.location.assign("http://localhost:1337/profile")
-                }
+                buttonApi.profile();
             })
             .error(function (res) {
                 alert(res);
@@ -27,10 +25,7 @@ function ButtonCtrl($scope, buttonApi) {
         buttonApi.signUp()
             .success(function (res) {
                 console.log(res);
-                if (res == "success") {
-                    //buttonApi.profile()
-                    window.location.assign("http://localhost:1337/profile")
-                }
+                buttonApi.profile();
                 console.log("made it to success in signup!")
             })
             .error(function (res) {
@@ -74,6 +69,11 @@ function buttonApi($http, apiUrl) {
             console.log(url);
             console.log($http);
             console.log("HEY! Youre at the bottom of button api signUp");
+            return $http.get(url);
+        },
+
+        profile: function () {
+            var url = apiUrl + '/profile';
             return $http.get(url);
         }
 
