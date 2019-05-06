@@ -27,7 +27,13 @@ function ProfileCtrl($scope, profileApi) {
   function addToTree() {
     console.log("i made it addToTree");
     profileApi.AddToTree()
-    console.log("after profileApi.matchPerson in function addToTree profile.js");
+
+      .success(function(res) {
+        location.assign("http://localhost:1337/registeredProfile");
+      })
+      .error(function(res) {
+        alert(res);
+      });
   }
 
 }
@@ -59,7 +65,13 @@ function profileApi($http, apiUrl) {
       gender = window.document.getElementsByName("gender")[0].checked;
       dob = window.document.getElementById("dob").value;
       email = window.localStorage.getItem("email");
-      console.log("in AddToTree values");
+      console.log("im in AddToTree before the if for gender");
+
+      if (gender) {
+        gender = "Male";
+      } else {
+        gender = "Female";
+      }
       console.log(firstname, lastName, gender, dob, email);
 
       var url = apiUrl + '/linkPerson?firstname=' + firstname + "&lastname=" + lastName + '&gender=' + gender + '&dob=' + dob + '&email=' + email;

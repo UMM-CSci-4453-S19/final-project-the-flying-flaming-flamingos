@@ -106,16 +106,29 @@ app.get("/linkPerson", function(req, res) {
   console.log(email, firstname, lastname, gender, dob);
 
   // creating person node
-  session.run("CREATE (m:person {firstName:'" + firstname + "',lastName:'" + lastname + "',gender:'" + gender + "',birthDate:'" + dob + "'})")
-  session.close();
-  session.run("MATCH (n:user {email:'" + email + "'}), (m:person {firstName:'" + firstname + "', lastName:'" + lastname + "'}) MERGE (n)-[r:isUser]->(m)")
+  session.run("MATCH (n:user {email:'" + email + "'}) MERGE (n)-[:isPerson]->(m: person {firstName:'" + firstname + "', lastName:'" + lastname + "', gender:'" + gender + "', birthDate:'" + dob + "'})")
+
+
+    //session.run("MERGE (m:person {firstName:'" + firstname + "',lastName:'" + lastname + "',gender:'" + gender + "',birthDate:'" + dob + "'})")
+    //session.close();
+    //session.run("MATCH (n:user {email:'" + email + "'}), (m:person {firstName:'" + firstname + "', lastName:'" + lastname + "'}) MERGE (n)-[r:isUser]->(m)")
 
     .subscribe({
       onCompleted: function() {
         console.log("link person session onComplete i am here")
       }
     })
+
+  session.close();
 });
+
+
+app.get("/registeredProfile", function(req, res) {
+  console.log("inside registeredProfile in express")
+  res.status(200).sendFile("/profile/registeredProfile.html", {
+    root: __dirname + '/public/'
+  });
+})
 
 
 
