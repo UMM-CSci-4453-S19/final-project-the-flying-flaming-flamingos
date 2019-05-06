@@ -29,6 +29,8 @@ function profileApi($http, apiUrl) {
             gender = window.document.getElementsByName("gender")[0].checked;
             console.log(gender)
 
+            var url = apiUrl + '/match?firstname=' + firstname + "&lastname=" + lastName + '&gender=' + gender;
+            return $http.get(url);
         }
 
     };
