@@ -11,7 +11,7 @@ function ButtonCtrl($scope, buttonApi) {
     function login() {
         buttonApi.logIn($scope.user)
             .success(function (res) {
-                buttonApi.profile();
+                location.assign("http://localhost:1337/profile");
             })
             .error(function (res) {
                 alert(res);
@@ -23,8 +23,7 @@ function ButtonCtrl($scope, buttonApi) {
         console.log("i made it to lowercase signup");
         buttonApi.signUp()
             .success(function (res) {
-                buttonApi.profile();
-                console.log("made it to success in signup!")
+                location.assign("http://localhost:1337/profile");
             })
             .error(function (res) {
                 alert(res);
@@ -48,11 +47,6 @@ function buttonApi($http, apiUrl) {
             var password = window.document.getElementById("signup-psw").value;
             var passwordRepeat = window.document.getElementById("signup-repeat-psw").value;
             var url = apiUrl + '/signup?email=' + email + '&password=' + password + '&passwordRepeat=' + passwordRepeat;
-            return $http.get(url);
-        },
-
-        profile: function () {
-            var url = apiUrl + '/profile';
             return $http.get(url);
         }
 
