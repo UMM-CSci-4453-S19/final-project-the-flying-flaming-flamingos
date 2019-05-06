@@ -39,6 +39,11 @@ app.get("/login", function(req, res) {
                         errorMessage = "You entered your password INCORRECTLY!";
                     }
 
+                },
+                onCompleted: function (record) {
+                    if(flag){
+                        res.status(400).send("there is no profile with that email")
+                    }
                 }
             })
 
@@ -96,15 +101,6 @@ app.get("/signup", function(req, res) {
       })
 
   }
-});
-
-app.get("/profile", function(req, res) {
-  // res.send("../profile.html", {
-  //   root: __dirname + '/public/'
-  // });
-    console.log("in profile api");
-    res.status(200).sendFile("/profile/profile.html",{root: __dirname + '/public/'});
-    console.log("finished profile api");
 });
 
 app.listen(port);
