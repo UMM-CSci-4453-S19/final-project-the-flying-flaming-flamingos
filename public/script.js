@@ -4,41 +4,11 @@ angular.module('buttons', [])
   .constant('apiUrl', 'http://localhost:1337'); //CHANGE for the lab!
 
 function ButtonCtrl($scope, buttonApi) {
-  $scope.buttons = []; //Initially all was still
-  $scope.errorMessage = '';
-  $scope.isLoading = isLoading;
-  $scope.buttonClick = buttonClick;
   $scope.login = login;
-  $scope.user = user;
   $scope.signup = signup;
-  $scope.email = email;
-  $scope.password = password;
-  $scope.passwordRepeat = passwordRepeat;
-
-  var loading = false;
-
-  var email;
-  var password;
-  var passwordRepeat;
-  var user;
-
-  function isLoading() {
-    return loading;
-  }
-
-
-  function buttonClick($event) {
-    $scope.errorMessage = '';
-    buttonApi.clickButton($event.target.id)
-      .success(function() {})
-      .error(function() {
-        $scope.errorMessage = "Unable click";
-      });
-  }
 
   // login function
   function login() {
-    $scope.user = window.document.getElementById("authentication-form").value;
     buttonApi.logIn($scope.user)
       .success(function(res) {
         if (res == "success") {
@@ -87,7 +57,9 @@ function buttonApi($http, apiUrl) {
 
     // logIn function
     logIn: function(user) {
-      var url = apiUrl + '/login' + '?user=' + user;
+      var email = window.document.getElementById("login-email").value;
+      var password = window.document.getElementById("login-psw").value;
+      var url = apiUrl + '/login' + '?email=' + email + "&password=" + password;
       //      console.log("Attempting with "+url);
       return $http.get(url); // Easy enough to do this way
     },
@@ -95,18 +67,13 @@ function buttonApi($http, apiUrl) {
     // signUp function
     signUp: function() {
       console.log("i made it to uppercase signUp")
-      email = window.document.getElementById("signup-email").value;
-      password = window.document.getElementById("signup-psw").value;
-      passwordRepeat = window.document.getElementById("signup-repeat-psw").value;
+      var email = window.document.getElementById("signup-email").value;
+      var password = window.document.getElementById("signup-psw").value;
+      var passwordRepeat = window.document.getElementById("signup-repeat-psw").value;
       var url = apiUrl + '/signup?email=' + email + '&password=' + password + '&passwordRepeat=' + passwordRepeat;
       console.log(url)
       console.log($http)
       console.log("HEY! Youre at the bottom of button api signUp")
-      return $http.get(url);
-    },
-
-    profile: function() {
-      var url = apiUrl + '/profile';
       return $http.get(url);
     }
 
