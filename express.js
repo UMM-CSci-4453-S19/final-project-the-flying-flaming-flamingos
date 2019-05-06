@@ -79,8 +79,17 @@ app.get("/match", function (req, res) {
     var firstname = req.query['firstname'];
     var lastname = req.query['lastname'];
     var gender = req.query['gender'];
+    var records = [];
 
-
+    session.run("MATCH (n:person {gender:'" + gender + "'}) WHERE n.firstName =~ '(?i)" + firstname + ".*' AND n.lastName =~ '(?i)" + lastname + ".*' RETURN n")
+        .subscribe({
+            onNext: function (record) {
+                records.push(record);
+            },
+            onCompleted: function (record) {
+                res.status(200).send(records);
+            }
+        })
 });
 
 app.listen(port);
