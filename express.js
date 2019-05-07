@@ -101,24 +101,35 @@ app.get("/linkPerson", function(req, res) {
   var lastname = req.query['lastname'];
   var gender = req.query['gender'];
   var dob = req.query['dob'];
+  var flag = false;
 
   console.log("inside appget linkPerson");
   console.log(email, firstname, lastname, gender, dob);
 
   // creating person node
-  session.run("MATCH (n:user {email:'" + email + "'}) MERGE (n)-[:isPerson]->(m: person {firstName:'" + firstname + "', lastName:'" + lastname + "', gender:'" + gender + "', birthDate:'" + dob + "'})")
+  session.run("MATCH (n:user {email:'" + email + "'})-[e]->(m:person) return e").subscribe({
+      onNext: function (record) {
+          flag = true;
+      },
+      onCompleted: function (record) {
+          if(!flag){
+              session.run("MERGE (n:user {email:'" + email + "'})-[:isPerson]->(m: person {firstName:'" + firstname + "', lastName:'" +
+                  lastname + "', gender:'" + gender + "', birthDate:'" + dob + "'})").subscribe({
+                  onCompleted: function () {
+                      res.status(200).send();
+                  }
+              })
+          }
+      }
+  });
+
+
+
 
 
     //session.run("MERGE (m:person {firstName:'" + firstname + "',lastName:'" + lastname + "',gender:'" + gender + "',birthDate:'" + dob + "'})")
     //session.close();
     //session.run("MATCH (n:user {email:'" + email + "'}), (m:person {firstName:'" + firstname + "', lastName:'" + lastname + "'}) MERGE (n)-[r:isUser]->(m)")
-
-    .subscribe({
-      onCompleted: function() {
-          res.status(200).send();
-        console.log("link person session onComplete i am here")
-      }
-    })
 
   session.close();
 });
