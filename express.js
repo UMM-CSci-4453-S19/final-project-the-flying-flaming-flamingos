@@ -119,6 +119,8 @@ app.get("/linkPerson", function(req, res) {
                       res.status(200).send();
                   }
               })
+          }else {
+              res.status(418).send("You are already in the tree");
           }
       }
   });
