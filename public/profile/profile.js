@@ -29,7 +29,7 @@ function ProfileCtrl($scope, profileApi) {
     profileApi.AddToTree()
 
       .success(function(res) {
-        location.assign("http://localhost:1337/registeredProfile");
+        //location.assign("http://localhost:1337/registeredProfile");
       })
       .error(function(res) {
         alert(res);
