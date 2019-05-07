@@ -115,6 +115,7 @@ app.get("/linkPerson", function(req, res) {
 
     .subscribe({
       onCompleted: function() {
+          res.status(200).send();
         console.log("link person session onComplete i am here")
       }
     })
