@@ -18,6 +18,6 @@
   "homepage": "https://github.com/UMM-CSci-4453-S19/final-project-the-flying-flaming-flamingos#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "neo4j-driver": "^1.7.3"
+    "neo4j-driver": "^1.7.4"
   }
 }
