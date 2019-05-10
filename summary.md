@@ -8,6 +8,10 @@
 
 ### Structure
 
+When we started the project we were planning on using MySQL and this below is how we were planning on setting up tables. We decided to move over to Neo4J since its structure worked best with our project.
+[Outline of tables](https://docs.google.com/document/d/1hLENiZwB4PbiLzfF-psUiQP6Exkq6a3mRG-93AOjtUc/edit)
+
+
 > We had two types of node labels, user and person. We planned on using gedcom which are standarized specifications for genealogical data. However we did not have the time to fully understand or get them to work with our project so we created our own structure.
 
 > User Nodes: user nodes are nodes for people using our website. Each user node has an email and password properties. These user nodes would then be connected to a person node with an edge that would specify an isPerson relationship.
@@ -46,8 +50,5 @@
 
 #### Overall Impressions
 
-Overall, we thought it was really interesting project. Using Neo4J was a great decision and learning how to use it was also pretty fun. It was interesting to learn about a different type of database model since we have only used mysql throughout the course. Using it for this project sparked interest in using it later, if/when applicable.
+> Overall, we thought it was really interesting project. Using Neo4J was a great decision and learning how to use it was also pretty fun. It was interesting to learn about a different type of database model since we have only used mysql throughout the course. Using it for this project sparked interest in using it later, if/when applicable.
 
-
-At this point we were planning on using MySQL and this below is how we were planning on setting up tables. We decided to move over to Neo4J since its structure worked best with our project.
-[Outline of tables](https://docs.google.com/document/d/1hLENiZwB4PbiLzfF-psUiQP6Exkq6a3mRG-93AOjtUc/edit)
