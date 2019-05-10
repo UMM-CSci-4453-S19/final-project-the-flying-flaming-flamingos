@@ -44,6 +44,10 @@
 
 > For future additions, we were interested in using gedcoms as the way of having families. In that structure, families have a node and members of that family have relationships to that family node specifying their 'role' in the family, such as wife, husband child, instead of having all nodes in the same database. If we were to go this route, implementing more relationships would be useful such a biological parents, legal parents etc... As of now we do not display the database or families in a grpahical way. A great addition to this project would be to implement the graph view in the users profile page instead of having links to view their family members page. It goes without saying that encrypting paswords would also be something good to implement in the future.
 
+#### Overall Impressions
+
+Overall, we thought it was really interesting project. Using Neo4J was a great decision and learning how to use it was also pretty fun. It was interesting to learn about a different type of database model since we have only used mysql throughout the course. Using it for this project sparked interest in using it later, if/when applicable.
+
 
 At this point we were planning on using MySQL and this below is how we were planning on setting up tables. We decided to move over to Neo4J since its structure worked best with our project.
 [Outline of tables](https://docs.google.com/document/d/1hLENiZwB4PbiLzfF-psUiQP6Exkq6a3mRG-93AOjtUc/edit)
